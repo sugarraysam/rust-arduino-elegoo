@@ -9,10 +9,12 @@ export MEMTYPE := flash
 
 .PHONY: build
 build:
-	@cargo build -Z build-std=core --target $(ARCH) --release
+	@./scripts/make.sh build
 
-# TODO read binary name as arg
 .PHONY: flash
 flash:
-	@avrdude -p $(AVR_PART) -c $(AVR_PROGRAMMER) -P $(SERIAL_PORT) \
-		-U $(MEMTYPE):w:target/$(ARCH)/release/$(BINARY).elf:e
+	@./scripts/make.sh flash
+
+.PHONY: clean
+clean:
+	@./scripts/clean.sh

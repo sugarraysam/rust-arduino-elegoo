@@ -1,2 +1,13 @@
 # elegoo tutorials
 elegoo/**
+
+# Rust gitignore
+**/target/**
+**/debug/**
+
+# backup files from rustfmt
+**/*.rs.bk
+
+# ignore lock files
+Cargo.lock
+**/Cargo.lock
