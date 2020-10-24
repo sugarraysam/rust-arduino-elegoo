@@ -1,0 +1,28 @@
+[package]
+name = "rust-arduino-elegoo"
+version = "0.1.0"
+authors = ["sugarraysam <samuel.blaisdowdy@protonmail.com>"]
+edition = "2018"
+
+[dependencies]
+# A panic handler is needed.  This is a crate with the most basic one.
+# The `leonardo-panic` example shows a more elaborate version.
+panic-halt = "0.2.0"
+
+[dependencies.arduino-uno]
+# Use latest commit hash from: https://github.com/Rahix/avr-hal/commits/master
+git = "https://github.com/Rahix/avr-hal"
+rev = "0c6cf16"
+
+# Configure the build for minimal size
+[profile.dev]
+panic = "abort"
+lto = true
+opt-level = "s"
+
+[profile.release]
+panic = "abort"
+codegen-units = 1
+debug = true
+lto = true
+opt-level = "s"

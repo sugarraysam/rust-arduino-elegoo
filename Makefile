@@ -1,20 +1,19 @@
-# Default ATmega328 architecture
-export ARCH := avr-unknown-gnu-atmega328
-export AVR_PART := atmega328p
-export AVR_PROGRAMMER := arduino
-export SERIAL_PORT := /dev/ttyACM0
+export PROJECT := rust-arduino-elegoo
+export ARCH := atmega328p
+export PROGRAMMER := arduino
+export SERIAL := /dev/ttyACM0
 # flash OR eeprom
 export MEMTYPE := flash
 
 
 .PHONY: build
 build:
-	@./scripts/make.sh build
+	@cargo build --example $(EXAMPLE) --release
 
 .PHONY: flash
 flash:
-	@./scripts/make.sh flash
+	@./scripts/flash.sh $(EXAMPLE)
 
 .PHONY: clean
 clean:
-	@./scripts/clean.sh
+	@cargo clean

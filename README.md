@@ -28,8 +28,9 @@ $ usermod -aG uucp <username>
 
 # compile and flash blink example
 # you might have to change the `SERIAL_PORT` in the `Makefile`
-$ make build DIR=0-blink
-$ make flash DIR=0-blink
+$ rustup override set nightly
+$ make build EXAMPLE=0-blink
+$ make flash EXAMPLE=0-blink
 ```
 
 ## Cargo build
@@ -62,6 +63,7 @@ opt-level = "s"
 - [The AVR-Rust project](https://github.com/avr-rust)
 - [Rust AVR book](https://book.avr-rust.com/)
 - [awesome-avr-rust](https://github.com/avr-rust/awesome-avr-rust)
+- [avr-hal](https://github.com/Rahix/avr-hal)
 
 ## Rust
 
