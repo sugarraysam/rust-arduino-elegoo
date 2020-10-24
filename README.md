@@ -6,11 +6,41 @@ This repository contains the necessary Rust code to go through the [Elegoo UNO P
 
 The [Elegoo UNO R3](./elegoo_uno_datasheet.pdf) is really just an Arduino Uno board, which is based on the ATmega328p architecture.
 
+## Prerequisites
+
+- [Install the compiler](https://book.avr-rust.com/002-installing-the-compiler.html)
+- [Install required 3rd party tools](https://book.avr-rust.com/002.1-installing-required-third-party-tools.html)
+- [Compile the LED blink example](https://github.com/avr-rust/blink)
+
+**24-10-2020 - Note on Blink example**
+
+I needed to add this to the `Cargo.toml` file so the compilation would work:
+
+```toml
+[profile.release]
+panic = "abort"
+codegen-units = 1
+debug = true
+lto = true
+opt-level = "s"
+```
+
 # Ressources
 
 - [Elegoo tutorials](https://www.elegoo.com/pages/arduino-kits-support-files)
-- [The AVR-Rust project - Github](https://github.com/avr-rust)
-- [Rust AVR website](https://www.avr-rust.com/)
+- [avrdude tutorial](http://ladyada.net/learn/avr/avrdude.html)
+
+## Archwiki
+
+- [Arduino](https://wiki.archlinux.org/index.php/Arduino)
+- [AVR](https://wiki.archlinux.org/index.php/AVR)
+
+## Github
+
+- [The AVR-Rust project](https://github.com/avr-rust)
 - [Rust AVR book](https://book.avr-rust.com/)
-- [awesome-avr-rust - Github](https://github.com/avr-rust/awesome-avr-rust)
-- [How to run Rust on Arduino Uno - great blog post](https://dev.to/creativcoder/how-to-run-rust-on-arduino-uno-40c0)
+- [awesome-avr-rust](https://github.com/avr-rust/awesome-avr-rust)
+
+## Rust
+
+- [Cargo workspaces](https://doc.rust-lang.org/book/ch14-03-cargo-workspaces.html)
