@@ -51,7 +51,9 @@ opt-level = "s"
 # Ressources
 
 - [Elegoo tutorials](https://www.elegoo.com/pages/arduino-kits-support-files)
+- [Arduino Built-In Examples](https://www.arduino.cc/en/Tutorial/BuiltInExamples)
 - [avrdude tutorial](http://ladyada.net/learn/avr/avrdude.html)
+- [creativcoder blog post](https://dev.to/creativcoder/how-to-run-rust-on-arduino-uno-40c0)
 
 ## Archwiki
 

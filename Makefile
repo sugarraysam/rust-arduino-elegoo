@@ -17,3 +17,7 @@ flash:
 .PHONY: clean
 clean:
 	@cargo clean
+
+.PHONY: doc
+doc:
+	@cargo doc --open

@@ -3,6 +3,8 @@
 
 extern crate panic_halt;
 
+use arduino_uno::hal::port::mode::Output;
+use arduino_uno::hal::port::portb::PB5;
 use arduino_uno::prelude::*;
 
 #[arduino_uno::entry]
@@ -17,13 +19,13 @@ fn main() -> ! {
     led.set_high().void_unwrap();
 
     loop {
-        led.toggle().void_unwrap();
-        arduino_uno::delay_ms(200);
-        led.toggle().void_unwrap();
-        arduino_uno::delay_ms(200);
-        led.toggle().void_unwrap();
-        arduino_uno::delay_ms(200);
-        led.toggle().void_unwrap();
-        arduino_uno::delay_ms(800);
+        stutter_blink(&mut led, 25);
     }
+}
+
+fn stutter_blink(led: &mut PB5<Output>, times: u16) {
+    (0..times).map(|i| i * 77).for_each(|i| {
+        led.toggle().void_unwrap();
+        arduino_uno::delay_ms(i);
+    });
 }
