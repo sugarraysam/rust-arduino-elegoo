@@ -10,7 +10,6 @@ The [Elegoo UNO R3](./elegoo_uno_datasheet.pdf) is really just an Arduino Uno bo
 
 - [Install the compiler](https://book.avr-rust.com/002-installing-the-compiler.html)
 - [Install required 3rd party tools](https://book.avr-rust.com/002.1-installing-required-third-party-tools.html)
-- [Compile the LED blink example](https://github.com/avr-rust/blink)
 
 **Archlinux setup**
 
@@ -26,11 +25,11 @@ $ rustup component add --toolchain nightly rust-src
 # you will need to logout & login for change to take effect
 $ usermod -aG uucp <username>
 
-# compile and flash blink example
+# compile and flash examples/
 # you might have to change the `SERIAL_PORT` in the `Makefile`
 $ rustup override set nightly
-$ make build EXAMPLE=0-blink
-$ make flash EXAMPLE=0-blink
+$ make build EXAMPLE=<example>
+$ make flash EXAMPLE=<example>
 ```
 
 ## Cargo build
