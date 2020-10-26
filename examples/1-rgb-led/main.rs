@@ -107,22 +107,22 @@ impl RGB {
     }
 
     fn fade_to_green(&mut self) {
-        self.fade(0, 255, 0)
+        self.fade(0, 255, 0);
     }
 
     fn fade_to_red(&mut self) {
-        self.fade(255, 0, 0)
+        self.fade(255, 0, 0);
     }
 
     fn fade_to_blue(&mut self) {
-        self.fade(0, 0, 255)
+        self.fade(0, 0, 255);
     }
 
     fn fade_to_black(&mut self) {
-        self.fade(0, 0, 0)
+        self.fade(0, 0, 0);
     }
 
     fn fade_to_white(&mut self) {
-        self.fade(255, 255, 255)
+        self.fade(255, 255, 255);
     }
 }
