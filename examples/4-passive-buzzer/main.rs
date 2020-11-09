@@ -7,9 +7,7 @@ use arduino_uno::atmega328p::TC1;
 use arduino_uno::hal::port;
 use arduino_uno::prelude::*;
 use arduino_uno::pwm::Prescaler;
-use elegoo::tone::pitches::{
-    NOTE_A5, NOTE_B5, NOTE_C5, NOTE_C6, NOTE_D5, NOTE_E5, NOTE_F5, NOTE_G5,
-};
+use elegoo::tone::pitches::*;
 
 // 16 MhHz == CPU frequency for Arduino
 const F_CPU: u32 = 16000000;
@@ -20,24 +18,29 @@ fn main() -> ! {
     let dp = arduino_uno::Peripherals::take().unwrap();
     let mut pins = arduino_uno::Pins::new(dp.PORTB, dp.PORTC, dp.PORTD);
 
-    let out_pin = pins.d8.into_output(&mut pins.ddr);
+    let mut out_pin = pins.d8.into_output(&mut pins.ddr);
+    out_pin.set_low().void_unwrap();
     unsafe {
         PIN = Some(out_pin);
+        avr_device::interrupt::enable();
     }
-    let melody: &[u16] = &[
-        NOTE_C5, NOTE_D5, NOTE_E5, NOTE_F5, NOTE_G5, NOTE_A5, NOTE_B5, NOTE_C6,
-    ];
+    // let melody: &[u16] = &[
+    //     NOTE_C5, NOTE_D5, NOTE_E5, NOTE_F5, NOTE_G5, NOTE_A5, NOTE_B5, NOTE_C6, NOTE_DS8, NOTE_B0,
+    // ];
+    let melody = &[NOTE_A5, NOTE_E5, NOTE_G5];
     let buzz = PassiveBuzzerCTRL::new(dp.TC1, melody);
     buzz.start()
+
+    // TODO - log output to screen as program is running (e.g: ocr value, current note (hz) played)
 }
 
-struct PassiveBuzzerCTRL {
+struct PassiveBuzzerCTRL<'a> {
     tc1: TC1,
-    melody: &'static [u16],
+    melody: &'a [u16],
 }
 
-impl PassiveBuzzerCTRL {
-    fn new(tc1: TC1, melody: &'static [u16]) -> Self {
+impl<'a> PassiveBuzzerCTRL<'a> {
+    fn new(tc1: TC1, melody: &'a [u16]) -> Self {
         let buzz = PassiveBuzzerCTRL { tc1, melody };
         buzz.init();
         buzz
@@ -57,10 +60,10 @@ impl PassiveBuzzerCTRL {
         loop {
             for &note in self.melody {
                 self.play(note as u32);
-                arduino_uno::delay_ms(500);
+                arduino_uno::delay_ms(2000);
             }
             self.stop();
-            arduino_uno::delay_ms(2000);
+            arduino_uno::delay_ms(3000);
         }
     }
 

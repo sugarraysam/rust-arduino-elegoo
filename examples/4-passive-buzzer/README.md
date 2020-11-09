@@ -6,10 +6,9 @@ You can find the rust constants for all pitches at `src/tone/pitches.rs` and use
 
 ```rust
 // import all
-use rust-arduino-elegoo::tone::pitches::*
+use elegoo::tone::pitches::*
 ```
 
 # Ressources
 
 - [Arduino Tone Library Documentation](https://code.google.com/archive/p/rogue-code/wikis/ToneLibraryDocumentation.wiki)
--

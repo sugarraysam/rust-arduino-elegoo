@@ -8,6 +8,7 @@
   "exe-suffix": ".elf",
   "executables": true,
   "is-builtin": true,
+  "no-builtins": true,
   "late-link-args": {
     "gcc": [
       "-lgcc"
